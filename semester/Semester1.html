@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGPA Calculator Semester 2</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .hide {
+      display: none;
+    }
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body class="bg-secondary">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">CGPA Calculator SIST</a>
+    <div class="my-2 my-sm-0">
+      <button class="btn btn-outline-success" data-toggle="modal" data-target="#Instructions">Instructions</button>
+      <button class="btn btn-outline-info" data-toggle="modal" data-target="#About">About</button>
+    </div>
+  </nav>
+
+  <div class="modal fade" id="Instructions" tabindex="-1" aria-labelledby="InstructionsModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="InstructionsModal">Instructions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Made for Sathyabama Students</li>
+            <li>If Total Marks for given subject is 100, Enter the Obtained Marks</li>
+            <li>If Total Marks for given subject is 50, follow below steps:</li>
+            <ol>
+              <li>If Obtained Marks are 42 out of 50 (Total Mark)</li>
+              <li>Then multiply both Obtained Marks and Total marks with 2</li>
+              <li>To get 84 out of 100</li>
+              <li>Then enter 84 in the "Obtained Marks" Field</li>
+            </ol>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="About" tabindex="-1" aria-labelledby="AboutModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AboutModal">About</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <a class="link" href="https://www.linkedin.com/in/sandeep-v-4b01551a4/" target="_blank">LinkedIn</a>
+          <a class="link" href="https://github.com/sandeep-v1404" target="_blank">GitHub</a>
+          <a class="link" href="https://www.instagram.com/sandy._.the_ace/" target="_blank">Instagram</a> -->
+          <p>© 2024 Akshay.E </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <article>
+      <div class="container mx-auto">
+        <div class="wrapper ml-5 mr-5 mb-2">
+          <form>
+            <div class="form-row mt-3">
+              <div class="col-sm mb-2">
+                <input type="number" min="0" class="form-control" placeholder="Register Number" id="register__number" autofocus />
+              </div>
+              <div class="col-sm mb-2">
+                <input type="text" class="form-control" placeholder="Student Name" id="student__name" />
+              </div>
+            </div>
+            <div class="form-row mt-3">
+              <div id="registerNumber" class="alert hide text-center alert-danger col-sm ml-2 mr-2 mb-2" role="alert"></div>
+              <div id="studentName" class="alert alert-primary hide text-center col-sm ml-2 mr-2 mb-2" role="alert"></div>
+            </div>
+          </form>
+        </div>
+
+        <div id="printArea" class="m-md-5 p-2 table-responsive-md">
+          <table id="table" class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Subject Name</th>
+                <th scope="col">Marks Obtained</th>
+                <th scope="col">Credits</th>
+                <th scope="col">Grade Points</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+
+          <form>
+            <div class="form-row mt-3">
+              <div class="col-sm mb-2">
+                <input type="text" class="form-control" placeholder="Subject Name" id="subject__name" />
+              </div>
+              <div class="col-sm mb-2">
+                <input min="0" max="100" type="number" class="form-control" placeholder="Obtained Marks" id="subject__omarks" />
+              </div>
+              <div class="col-sm mb-3">
+                <input min="0" type="number" class="form-control" placeholder="Credits" id="subject__credits" />
+              </div>
+              <div class="col-sm col-md-2 mb-2 text-center">
+                <input onclick="addSubject()" type="button" id="add" class="btn btn-info btn-block" value="Add" />
+              </div>
+            </div>
+          </form>
+
+          <div id="totalCredits" class="alert alert-success hide text-center ml-4 mr-4 mt-3 p-2" role="alert"></div>
+          <div id="GPA" class="alert hide text-center mt-3 ml-5 mr-5 p-2 alert-warning" role="alert"></div>
+        </div>
+
+        <div class="wrapper m-5 pl-3 pr-3">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 m-auto">
+              <input onclick="calculator()" type="button" id="calculate" class="hide btn btn-primary btn-block mb-2" value="Calculate" />
+            </div>
+            <div class="col-lg-3 col-md-3 m-auto">
+              <input onclick="Print()" type="button" id="screenShot" class="hide btn btn-warning btn-block mb-2" value="Print" />
+            </div>
+            <div class="col-lg-3 col-md-3 m-auto">
+              <input onclick="ClearAll()" type="button" id="clear" class="hide btn btn-danger btn-block mb-2" value="Clear All" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <span>Created By Akshay Esackimuthu</span>
+  </div>
+
+  <a class="bear-link" href="/index.html" target="_blank" rel="noreferrer noopener">
+    <svg class="w-9" viewBox="0 0 969 955" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="161.191" cy="320.191" r="133.191" stroke="currentColor" stroke-width="20"></circle>
+      <circle cx="806.809" cy="320.191" r="133.191" stroke="currentColor" stroke-width="20"></circle>
+      <circle cx="695.019" cy="587.733" r="31.4016" fill="currentColor"></circle>
+      <circle cx="272.981" cy="587.733" r="31.4016" fill="currentColor"></circle>
+      <path d="M564.388 712.083C564.388 743.994 526.035 779.911 483.372 779.911C440.709 779.911 402.356 743.994 402.356 712.083C402.356 680.173 440.709 664.353 483.372 664.353C526.035 664.353 564.388 680.173 564.388 712.083Z" fill="currentColor"></path>
+      <rect x="310.42" y="448.31" width="343.468" height="51.4986" fill="#FF1E1E"></rect>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M745.643 288.24C815.368 344.185 854.539 432.623 854.539 511.741H614.938V454.652C614.938 433.113 597.477 415.652 575.938 415.652H388.37C366.831 415.652 349.37 415.652V511.741L110.949 511.741C110.949 432.623 150.12 344.185 219.845 288.24C289.57 232.295 384.138 200.865 482.744 200.865C581.35 200.865 675.918 232.295 745.643 288.24Z" fill="currentColor"></path>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
+
