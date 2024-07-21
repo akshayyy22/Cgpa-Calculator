@@ -1,151 +1,233 @@
-const studentName = document.querySelector("#student__name");
-const registerNumber = document.querySelector("#register__number");
-
-const add = document.querySelector("#add");
-const subName = document.querySelector("#subject__name");
-const subObtMarks = document.querySelector("#subject__omarks");
-
-const subCredits = document.querySelector("#subject__credits");
-
-const tbody = document.querySelector("#tbody");
-
-const totalCredits = document.querySelector("#totalCredits");
-const GPAHeading = document.querySelector("#GPA");
-const studentNameHeading = document.querySelector("#studentName");
-const registerNumberHeading = document.querySelector("#registerNumber");
-
-const table = document.querySelector("#table");
-
-const calculate = document.querySelector("#calculate");
-const clear = document.querySelector("#clear");
-const screenShot = document.querySelector("#screenShot");
-
-let arr = [];
-
-function Print() {
-  // var printContents = document.getElementById(div).innerHTML;
-  // var originalContents = document.body.innerHTML;
-
-  // document.body.innerHTML = printContents;
-  subName.classList.add("hide");
-  subObtMarks.classList.add("hide");
-  subCredits.classList.add("hide");
-  add.classList.add("hide");
-  calculate.classList.add("hide");
-  clear.classList.add("hide");
-  screenShot.classList.add("hide");
-  window.print();
-  subName.classList.remove("hide");
-  subObtMarks.classList.remove("hide");
-  subCredits.classList.remove("hide");
-  add.classList.remove("hide");
-  calculate.classList.remove("hide");
-  clear.classList.remove("hide");
-  screenShot.classList.remove("hide");
-  // document.body.innerHTML = originalContents;
-}
-
-function addSubject() {
-  if (
-    studentName.value == "" ||
-    registerNumber.value == "" ||
-    registerNumber.value.length !== 8
-  ) {
-    alert("Enter the Correct Details of Student");
-  } else if (
-    subName.value == "" ||
-    subObtMarks.value == "" ||
-    subObtMarks.value > 100 ||
-    subCredits.value == ""
-  ) {
-    alert("Enter all Correct Details of Subject");
-  } else {
-    studentNameHeading.innerHTML = "Student Name: " + studentName.value;
-    registerNumberHeading.innerHTML =
-      "Register Number: " + registerNumber.value;
-    studentNameHeading.classList.remove("hide");
-    registerNumberHeading.classList.remove("hide");
-
-    studentName.classList.add("hide");
-    registerNumber.classList.add("hide");
-    const tr = document.createElement("tr");
-
-    const tdsubName = document.createElement("td");
-    tdsubName.innerHTML = subName.value;
-
-    const tdsubObtMarks = document.createElement("td");
-    tdsubObtMarks.innerHTML = subObtMarks.value;
-
-    var gpoints;
-    if (subObtMarks.value >= 50 && subObtMarks.value <= 59) {
-      gpoints = 6;
-    } else if (subObtMarks.value >= 60 && subObtMarks.value <= 69) {
-      gpoints = 7;
-    } else if (subObtMarks.value >= 70 && subObtMarks.value <= 79) {
-      gpoints = 8;
-    } else if (subObtMarks.value >= 80 && subObtMarks.value <= 89) {
-      gpoints = 9;
-    } else if (subObtMarks.value >= 90 && subObtMarks.value <= 100) {
-      gpoints = 10;
+// Constants for storing semester data
+const semester1 = {
+    subjects: [
+      "Technical English",
+      "Matrices and Calculus",
+      "Chemistry ",
+      "Electrical and Electronics Engineering ",
+      "Programming in C ",
+      "Chemistry Lab",
+    ],
+    credits: [3, 3, 3, 3, 4, 1],
+    marks: [],
+  };
+  
+  const semester2 = {
+    subjects: [
+      "Advanced Calculus and Statistics",
+      "Physics",
+      "Data Structures",
+      "Programming in Python",
+      "Engineering Drawing and Design",
+      "Physics Lab",
+      "Data Structures Lab",
+    ],
+    credits: [3, 3, 3, 4, 2, 1, 2],
+    marks: [],
+  };
+  
+  // Define other semesters similarly
+  const semester3 = {
+    subjects: [
+      "Discrete Mathematics and Numerical Methods",
+      "Computer Architecture and Organization",
+      "Universal Human Values",
+      "Theory of Computation",
+      "Digital Logic Circuits",
+      "Microprocessor and Microcontroller",
+      "Programming in Java",
+    ],
+    credits: [3, 3, 3, 3, 4, 4, 4],
+    marks: [],
+  };
+  
+  const semester4 = {
+    subjects: [
+      "Probability and Statistics",
+      "Operating Systems and Unix",
+      "Professional Elective 1",
+      "Open Elective 1",
+      "Database Management Systems",
+      "Operating Systems Lab ",
+      "Design Thinking and Innovations",
+      "Skill Enhancement Course -I",
+    ],
+    credits: [3, 3, 3, 3, 4, 2, 2,1],
+    marks: [],
+  };
+  
+  const semester5 = {
+    subjects: [
+      "Data Communication and Computer Networks",
+      "Design and Analysis of Algorithms",
+      "Professional Elective 2 ",
+      "Open Elective 2",
+      "Software Engineering Design and Development",
+      "Augmented and Virtual Reality",
+      "Computer Networks Lab",
+      "Professional Training – I",
+      "Skill Enhancement Course - II",
+    ],
+    credits: [3, 3, 3, 3, 4, 3, 2, 2, 1],
+    marks: [],
+  };
+  
+  const semester6 = {
+    subjects: [
+      "Compiler Design",
+      "Network Security",
+      "Parallel and Distributed Computing",
+      "Professional Elective 3",
+      "Open Elective 3",
+      "Machine Learning",
+      "Compiler Design Lab",
+      "Professional Training - II / Interdisciplinary Project / Community Internship",
+      "Skill Enhancement Course - III",
+    ],
+    credits: [3, 3, 3, 3, 3, 4, 2, 3, 1],
+    marks: [],
+  };
+  
+  const semester7 = {
+    subjects: [
+      "Management Elective",
+      "Artificial Intelligence",
+      "Professional Elective 4",
+      "Open Elective 4",
+      "Big Data Analytics ",
+      "Project Phase 1 ",
+    ],
+    credits: [3, 3, 3, 3, 4, 3],
+    marks: [],
+  };
+  
+  const semester8 = {
+    subjects: [
+      "Professional Elective 5*",
+      "Professional Elective 6*",
+      "Project Phase 2",
+    ],
+    credits: [4, 3, 3, 3, 2, 3, 3],
+    marks: [],
+  };
+  
+  // Array to hold all semester data
+  let semesterData = [semester1, semester2, semester3, semester4, semester5, semester6, semester7, semester8];
+  
+  // Function to initialize the semester table with default values
+  function initializeSemester(semesterIndex) {
+    const semesterDataFromLocalStorage = localStorage.getItem(`semester${semesterIndex}`);
+    if (semesterDataFromLocalStorage) {
+      semesterData[semesterIndex - 1] = JSON.parse(semesterDataFromLocalStorage);
     } else {
-      gpoints = 0;
+      localStorage.setItem(`semester${semesterIndex}`, JSON.stringify(semesterData[semesterIndex - 1]));
     }
-    const tdGPoints = document.createElement("td");
-    tdGPoints.innerHTML = gpoints;
-
-    const tdsubCredits = document.createElement("td");
-    tdsubCredits.innerHTML = subCredits.value;
-    tr.appendChild(tdsubName);
-    tr.appendChild(tdsubObtMarks);
-    tr.appendChild(tdsubCredits);
-    tr.appendChild(tdGPoints);
-
-    tbody.appendChild(tr);
-    table.classList.remove("hide");
-    calculate.classList.remove("hide");
-    clear.classList.remove("hide");
-
-    arr.push({
-      subName: subName.value,
-      subObtMarks: parseInt(subObtMarks.value),
-      subCredits: parseInt(subCredits.value),
-      gpoints: gpoints,
-    });
-
-    subName.value = "";
-    subObtMarks.value = "";
-    subCredits.value = "";
+    populateTable(semesterIndex);
   }
-}
-function calculator() {
-  var sumofCredits = 0,
-    sumofProductofCreditsAndGPoints = 0;
-  arr.forEach((sub) => {
-    sumofCredits += sub.subCredits;
-    sumofProductofCreditsAndGPoints += sub.subCredits * sub.gpoints;
-  });
-  const GPA = sumofProductofCreditsAndGPoints / sumofCredits;
-  totalCredits.classList.remove("hide");
-  GPAHeading.classList.remove("hide");
-  screenShot.classList.remove("hide");
-
-  totalCredits.innerHTML = `Total Credits : ${sumofCredits}`;
-  GPAHeading.innerHTML = `GPA : ${GPA.toFixed(4)}`;
-}
-
-function ClearAll() {
-  arr = [];
-  tbody.querySelectorAll("*").forEach((child) => child.remove());
-  table.classList.add("hide");
-  totalCredits.classList.add("hide");
-  GPAHeading.classList.add("hide");
-  calculate.classList.add("hide");
-  clear.classList.add("hide");
-  screenShot.classList.add("hide");
-  studentNameHeading.classList.add("hide");
-  registerNumberHeading.classList.add("hide");
-  studentName.classList.remove("hide");
-  registerNumber.classList.remove("hide");
-  studentName.value = "";
-  registerNumber.value = "";
-}
+  
+  // Function to populate the table with stored data
+  function populateTable(semesterIndex) {
+    const tableBody = document.getElementById(`tbody${semesterIndex}`);
+    if (!tableBody) {
+      console.error(`Table body with ID 'tbody${semesterIndex}' not found.`);
+      return;
+    }
+    tableBody.innerHTML = "";
+  
+    for (let i = 0; i < semesterData[semesterIndex - 1].subjects.length; i++) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${semesterData[semesterIndex - 1].subjects[i]}</td>
+        <td><input type="number" class="form-control" id="marks${semesterIndex}-${i + 1}" value="${semesterData[semesterIndex - 1].marks[i]}" /></td>
+        <td>${semesterData[semesterIndex - 1].credits[i]}</td>
+        <td id="grade${semesterIndex}-${i + 1}"></td>
+      `;
+      tableBody.appendChild(row);
+    }
+  }
+  
+  // Function to calculate grade points based on marks
+  function calculateGradePoints(marks) {
+    if (marks >= 90) return 10;
+    if (marks >= 80) return 9;
+    if (marks >= 70) return 8;
+    if (marks >= 60) return 7;
+    if (marks >= 50) return 6;
+    if (marks >= 40) return 5;
+    return 0;
+  }
+  
+  // Function to calculate GPA and total credits
+  function calculateGPA(semesterIndex) {
+    const registerNumber = document.getElementById("register__number").value;
+    const studentName = document.getElementById("student__name").value;
+  
+    // Check if registration number and student name are filled
+    if (registerNumber === "" || studentName === "") {
+      alert("Please enter Register Number and Student Name before calculating GPA.");
+      return;
+    }
+  
+    let totalCredits = 0;
+    let totalGradePoints = 0;
+  
+    for (let i = 0; i < semesterData[semesterIndex - 1].subjects.length; i++) {
+      const marks = parseInt(document.getElementById(`marks${semesterIndex}-${i + 1}`).value);
+      const credits = semesterData[semesterIndex - 1].credits[i];
+      const gradePoints = calculateGradePoints(marks);
+  
+      document.getElementById(`grade${semesterIndex}-${i + 1}`).innerText = gradePoints;
+  
+      totalCredits += credits;
+      totalGradePoints += gradePoints * credits;
+    }
+  
+    const gpa = totalGradePoints / totalCredits;
+  
+    // Display GPA and Total Credits
+    const gpaElement = document.getElementById(`GPA${semesterIndex}`);
+    gpaElement.innerText = `GPA: ${gpa.toFixed(2)}`;
+    gpaElement.classList.remove("hide");
+  
+    const totalCreditsElement = document.getElementById(`totalCredits${semesterIndex}`);
+    totalCreditsElement.innerText = `Total Credits: ${totalCredits}`;
+    totalCreditsElement.classList.remove("hide");
+  }
+  
+  // Function to clear all input fields
+  function ClearAll(semesterIndex) {
+    document.getElementById("register__number").value = "";
+    document.getElementById("student__name").value = "";
+  
+    for (let i = 0; i < semesterData[semesterIndex - 1].subjects.length; i++) {
+      document.getElementById(`marks${semesterIndex}-${i + 1}`).value = "";
+      document.getElementById(`grade${semesterIndex}-${i + 1}`).innerText = "";
+    }
+  
+    document.getElementById(`GPA${semesterIndex}`).classList.add("hide");
+    document.getElementById(`totalCredits${semesterIndex}`).classList.add("hide");
+  }
+  
+  // Function to print the content
+  function Print(semesterIndex) {
+    const printContents = document.getElementById(`printArea${semesterIndex}`).cloneNode(true);
+  
+    printContents.querySelectorAll("input").forEach((input) => {
+      input.remove();
+    });
+  
+    const originalContents = document.body.innerHTML;
+    document.body.innerHTML = "";
+    document.body.appendChild(printContents);
+  
+    window.print();
+  
+    document.body.innerHTML = originalContents;
+  }
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize all semesters here
+    for (let i = 1; i <= 8; i++) {
+        initializeSemester(i);
+    }
+});

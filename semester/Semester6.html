@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGPA Calculation Semester 1</title>
+    <title>CGPA Calculation Semester 6</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -18,7 +18,8 @@
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand">CGPA Calculator SIST</a>
         <div class="my-2 my-sm-0">
-            <button class="btn btn-outline-success" data-toggle="modal" data-target="#Instructions">Instructions</button>
+            <button class="btn btn-outline-success" data-toggle="modal"
+                data-target="#Instructions">Instructions</button>
             <button class="btn btn-outline-info" data-toggle="modal" data-target="#About">About</button>
         </div>
     </nav>
@@ -35,12 +36,13 @@
                 <div class="modal-body">
                     <ul>
                         <li>Made for Sathyabama Students</li>
-                        <li>If Total Marks for a given subject is 100, enter the obtained marks.</li>
-                        <li>If Total Marks for a given subject is 50, follow these steps:</li>
+                        <li>If Total Marks for given subject is 100, Enter the Obtained Marks</li>
+                        <li>If Total Marks for given subject is 50, follow below steps:</li>
                         <ol>
-                            <li>If Obtained Marks are 42 out of 50 (Total Mark), multiply both Obtained Marks and
-                                Total marks by 2.</li>
-                            <li>Then, enter 84 in the "Obtained Marks" field.</li>
+                            <li>If Obtained Marks are 42 out of 50 (Total Mark)</li>
+                            <li>Then multiply both Obtained Marks and Total marks with 2</li>
+                            <li>To get 84 out of 100</li>
+                            <li>Then enter 84 in the "Obtained Marks" Field</li>
                         </ol>
                     </ul>
                 </div>
@@ -87,12 +89,10 @@
                     </form>
                 </div>
 
-                <div class="semester" id="semester1">
-                    <div class="col-md-10 heading text-center font-weight-bold">
-                        Semester 1
-                    </div>
-                    <div id="printArea1" class="m-md-5 p-2 table-responsive-md">
-                        <table id="table1" class="table table-striped table-dark">
+                <div class="semester" id="semester6">
+                    <h3 style="text-align: center; font-weight: bold;">Semester 6</h3>
+                    <div id="printArea3" class="m-md-5 p-2 table-responsive-md">
+                        <table id="table3" class="table table-striped table-dark">
                             <thead>
                                 <tr>
                                     <th scope="col">Subject Name</th>
@@ -101,29 +101,29 @@
                                     <th scope="col">Grade Points</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody1">
+                            <tbody id="tbody6">
                                 <!-- Subjects and credits will be dynamically added here -->
                             </tbody>
                         </table>
 
-                        <div id="totalCredits1" class="alert alert-success hide text-center ml-4 mr-4 mt-3 p-2"
+                        <div id="totalCredits6" class="alert alert-success hide text-center ml-4 mr-4 mt-3 p-2"
                             role="alert"></div>
-                        <div id="GPA1" class="alert hide text-center mt-3 ml-5 mr-5 p-2 alert-warning" role="alert">
+                        <div id="GPA6" class="alert hide text-center mt-3 ml-5 mr-5 p-2 alert-warning" role="alert">
                         </div>
                     </div>
 
                     <div class="wrapper m-5 pl-3 pr-3">
                         <div class="row">
                             <div class="col-lg-3 col-md-3 m-auto">
-                                <input onclick="calculateGPA(1)" type="button" id="calculate1"
+                                <input onclick="calculateGPA(6)" type="button" id="calculate3"
                                     class="btn btn-primary btn-block mb-2" value="Calculate" />
                             </div>
                             <div class="col-lg-3 col-md-3 m-auto">
-                                <input onclick="Print(1)" type="button" id="screenShot1"
+                                <input onclick="Print(6)" type="button" id="screenShot3"
                                     class="btn btn-warning btn-block mb-2" value="Print" />
                             </div>
                             <div class="col-lg-3 col-md-3 m-auto">
-                                <input onclick="ClearAll(1)" type="button" id="clear1"
+                                <input onclick="ClearAll(6)" type="button" id="clear3"
                                     class="btn btn-danger btn-block mb-2" value="Clear All" />
                             </div>
                         </div>
@@ -140,7 +140,7 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            initializeSemester(1); // Initialize Semester 1 (index 0)
+            initializeSemester(6); // Initialize Semester 6
         });
     </script>
 </body>
