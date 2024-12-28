@@ -34,10 +34,10 @@ const semester1 = {
       "Universal Human Values",
       "Theory of Computation",
       "Digital Logic Circuits",
-      "Microprocessor and Microcontroller",
+      // "Microprocessor and Microcontroller",
       "Programming in Java",
     ],
-    credits: [3, 3, 3, 3, 4, 4, 4],
+    credits: [3, 3, 3, 3, 4, 4],
     marks: [],
   };
   
